@@ -21,7 +21,9 @@ const Favorites = (props) => {
                     </ul>
                 </div>
             </nav>
-            Something in Favorites
+            <div>
+                This is the Favorites Page
+            </div>
         </div>
     )
 }

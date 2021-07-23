@@ -20,6 +20,9 @@ const Home = (props) => {
                 </ul>
             </div>
         </nav>
+        <div>
+            This is the Home Page
+        </div>
     </div>
 }
 

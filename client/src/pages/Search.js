@@ -23,6 +23,9 @@ const Search = (props) => {
             </nav>
             <label>Search for a Twitter User: </label>
             <input placeholder="Input username here"></input>
+            <div>
+                This is the Search Page
+            </div>
         </div>
     )
 }
