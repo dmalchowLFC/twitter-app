@@ -9,10 +9,10 @@ const Home = (props) => {
             <div className="collapse navbar-collapse" id="navbarCollapse">
                 <ul className="navbar-nav ml-auto">
                     <li className="navbar-item">
-                        <a href="pages/Home.js">Home</a>
+                        <a href="./pages/Home.js">Home</a>
                     </li>
                     <li className="navbar-item">
-                        <a href="pages/Search.js">Search</a>
+                        <a href="./pages/Search.js">Search</a>
                     </li>
                     <li className="./navbar-item">
                         <a href="./pages/Favorites.js">Favorites</a>

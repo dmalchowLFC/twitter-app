@@ -13,7 +13,7 @@ class App extends React.Component {
         <Home />
       </div>
     )
-  };
+  }
 }
 
 export default App;
