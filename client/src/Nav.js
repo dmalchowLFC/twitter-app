@@ -6,8 +6,10 @@ function Nav() {
     return (
         <nav class="navbar navbar-light bg-light navbar-expand-lg">
             <h2 class="navbar-brand">Logo</h2>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#theLinks">Open</button>
-            <div class="collapse navbar-collapse mr-auto" id="theLinks">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#theLinks">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="theLinks">
                 <ul class="navbar-nav">
                     <Link to="/" class="nav-link">
                         <li class="navbar-item">Home</li>

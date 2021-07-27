@@ -19,7 +19,6 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/search" exact component={Search} />
           <Route path="/favorites" exact component={Favorites} />
-          {/* <Route path="/nav" exact component={Nav} /> */}
         </div>
       </Switch>
     </Router>
