@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
-import Nav from './Nav'
-import Home from './Home'
-import Search from './Search'
-import Favorites from './Favorites'
+import Home from './pages/Home'
+import Search from './pages/Search'
+import Favorites from './pages/Favorites'
 import {
   BrowserRouter as Router,
   Switch,

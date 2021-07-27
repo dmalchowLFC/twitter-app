@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "./Nav";
+import Nav from "../Nav";
 
 
 function Favorites() {
@@ -7,7 +7,7 @@ function Favorites() {
         <div>
             <Nav />
             <h1>Favorites Page</h1>
-            <div class="card border-secondary" width="50vw">
+            <div class="card border-secondary w-50 mx-auto">
                 <div>
                     <img
                         class="thumbnail img-responsive rounded-circle"
@@ -25,7 +25,7 @@ function Favorites() {
                     <span>Twitter Web App</span>
                 </div>
             </div>
-            <div class="card border-secondary" width="50vw">
+            <div class="card border-secondary w-50 mx-auto">
                 <div>
                     <img
                         class="thumbnail img-responsive rounded-circle"
@@ -43,7 +43,7 @@ function Favorites() {
                     <span>Twitter Web App</span>
                 </div>
             </div>
-            <div class="card border-secondary" width="50vw">
+            <div class="card border-secondary w-50 mx-auto">
                 <div>
                     <img
                         class="thumbnail img-responsive rounded-circle"
