@@ -1,12 +1,14 @@
 import React from "react";
 import Nav from "../Nav"
-// import MockData from './MockData'
+import MockData from './MockData'
 
 
 class Search extends React.Component {
     constructor() {
         super()
-        this.state = {}
+        this.state = {
+            searchResults: ""
+        }
 
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -17,7 +19,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{ backgroundColor: "lightblue" }}>
                 <Nav />
                 <h1>Search Page</h1>
                 <form onSubmit={this.handleSubmit}>
@@ -30,7 +32,10 @@ class Search extends React.Component {
                     ></input>
                     <button type="submit" class="btn btn-primary text-light">Submit</button>
                 </form>
-
+                <hr></hr>
+                <body height='100vh' style={{ backgroundColor: "lightblue" }}>
+                    <MockData />
+                </body>
             </div>
         )
     }

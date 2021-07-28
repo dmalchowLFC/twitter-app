@@ -11,18 +11,25 @@ import {
 } from "react-router-dom";
 
 
-function App() {
-  return (
-    <Router>
-      <Switch>
-        <div className="App">
-          <Route path="/" exact component={Home} />
-          <Route path="/search" exact component={Search} />
-          <Route path="/favorites" exact component={Favorites} />
-        </div>
-      </Switch>
-    </Router>
-  )
+class App extends React.Component {
+  constructor() {
+    super()
+  }
+  render() {
+    return (
+      <div>
+        <Router>
+          <Switch>
+            <div className="App">
+              <Route path="/" exact component={Home} />
+              <Route path="/search" exact component={Search} />
+              <Route path="/favorites" exact component={Favorites} />
+            </div>
+          </Switch>
+        </Router>
+      </div>
+    )
+  }
 }
 
 

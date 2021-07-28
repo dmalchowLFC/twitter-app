@@ -7,8 +7,10 @@ function Favorites() {
     return (
         <div>
             <Nav />
-            <h1>Favorites Page</h1>
-            <MockData />
+            <body style={{ backgroundColor: "lightblue" }}>
+                <h1 class="text-center">Favorites Page</h1>
+                <MockData />
+            </body>
         </div>
     )
 }
