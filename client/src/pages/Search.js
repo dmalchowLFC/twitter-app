@@ -19,7 +19,7 @@ class Search extends React.Component {
 
     render() {
         return (
-            <div style={{ backgroundColor: "lightblue" }}>
+            <div>
                 <Nav />
                 <h1>Search Page</h1>
                 <form onSubmit={this.handleSubmit}>
@@ -33,7 +33,7 @@ class Search extends React.Component {
                     <button type="submit" class="btn btn-primary text-light">Submit</button>
                 </form>
                 <hr></hr>
-                <body height='100vh' style={{ backgroundColor: "lightblue" }}>
+                <body height='100vh'>
                     <MockData />
                 </body>
             </div>

@@ -7,7 +7,7 @@ function Favorites() {
     return (
         <div>
             <Nav />
-            <body style={{ backgroundColor: "lightblue" }}>
+            <body>
                 <h1 class="text-center">Favorites Page</h1>
                 <MockData />
             </body>

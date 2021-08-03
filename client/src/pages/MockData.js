@@ -3,7 +3,7 @@ import React from "react"
 const MockData = () => {
     return (
         <div>
-            <div class="card border-secondary w-50 mx-auto">
+            <div class="card border-secondary w-50 mx-auto bg-light">
                 <div>
                     <img
                         class="thumbnail img-responsive rounded-circle"
@@ -21,7 +21,7 @@ const MockData = () => {
                     <span>Twitter Web App</span>
                 </div>
             </div>
-            <div class="card border-secondary w-50 mx-auto">
+            <div class="card border-secondary w-50 mx-auto bg-light">
                 <div>
                     <img
                         class="thumbnail img-responsive rounded-circle"
@@ -39,7 +39,7 @@ const MockData = () => {
                     <span>Twitter Web App</span>
                 </div>
             </div>
-            <div class="card border-secondary w-50 mx-auto">
+            <div class="card border-secondary w-50 mx-auto bg-light">
                 <div>
                     <img
                         class="thumbnail img-responsive rounded-circle"
