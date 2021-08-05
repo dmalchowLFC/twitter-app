@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import axios from 'axios';
 
 
+axios.defaults.headers.common['Authentication'] = bToken;
+axios.defaults.headers.get['Accepts'] = 'application/json';
 ReactDOM.render(
   <React.StrictMode>
     <App />

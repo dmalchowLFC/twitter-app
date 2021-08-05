@@ -7,14 +7,31 @@ class Search extends React.Component {
     constructor() {
         super()
         this.state = {
-            searchResults: ""
+            searchQuery: '',
+            searchResults: ''
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.findTweets = this.findTweets.bind(this);
     }
 
-    handleSubmit() {
-        return ''
+    handleChange(event) {
+        this.setState({
+            searchQuery: event.target.value
+        })
+    }
+    async handleSubmit(event) {
+        event.preventDefault();
+        this.findTweets(`https://api.twitter.com/2/tweets/search/recent?query=${this.state.searchQuery}`)
+    }
+
+    async findTweets(URL) {
+        const tweetData = await axios.get(URL);
+        this.setState({
+            searchResults: tweetData
+        })
+        console.log(tweetData)
     }
 
     render() {
