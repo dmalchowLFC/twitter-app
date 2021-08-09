@@ -8,7 +8,7 @@ function Favorites() {
         <div>
             <Nav />
             <body>
-                <h1 class="text-center">Favorites Page</h1>
+                <h1 className="text-center">Favorites Page</h1>
                 <MockData />
             </body>
         </div>

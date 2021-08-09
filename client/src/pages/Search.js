@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../Nav"
-import MockData from './MockData'
+import MockData from './MockData';
+import axios from 'axios';
 
 
 class Search extends React.Component {
@@ -23,7 +24,7 @@ class Search extends React.Component {
     }
     async handleSubmit(event) {
         event.preventDefault();
-        this.findTweets(`https://api.twitter.com/2/tweets/search/recent?query=${this.state.searchQuery}`)
+        this.findTweets(`https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${this.state.searchQuery}&count=5`)
     }
 
     async findTweets(URL) {
