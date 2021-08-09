@@ -7,7 +7,7 @@ const axios = require('axios');
 const bToken = process.env.bearer_token;
 
 app.get('/search', (req, res) => {
-    res.send('Getting my search bar working...');
+    console.log('Getting my search bar working...');
 });
 
 axios
