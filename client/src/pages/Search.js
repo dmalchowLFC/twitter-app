@@ -24,15 +24,15 @@ class Search extends React.Component {
     }
     async handleSubmit(event) {
         event.preventDefault();
-        this.findTweets(`https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${this.state.searchQuery}&count=5`)
+
     }
 
     async findTweets(URL) {
-        const tweetData = await axios.get(URL);
+        const tweets = await axios.get(URL);
         this.setState({
-            searchResults: tweetData
+            searchResults: tweets
         })
-        console.log(tweetData)
+        console.log(searchResults)
     }
 
     render() {
