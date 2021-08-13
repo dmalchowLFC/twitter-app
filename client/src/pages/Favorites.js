@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "../Nav";
-import MockData from "./MockData"
+import MockData from "./Tweets"
 
 
 function Favorites() {

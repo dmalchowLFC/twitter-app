@@ -16,7 +16,13 @@ app.get('/api/search', async (req, res) => {
                 headers: { Authorization: `Bearer ${bToken}` },
             })
         .then((response) => {
-            res.send(response.data)
+            if (response != error) {
+                res.send(response.data)
+            }
+            else {
+                alert("Screen name not found, please try another name.")
+                console.log(error)
+            }
         })
 });
 

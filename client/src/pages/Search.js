@@ -7,8 +7,7 @@ class Search extends React.Component {
         super()
         this.state = {
             searchQuery: '',
-            searchResults: [],
-            hasData: false
+            searchResults: []
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,8 +23,11 @@ class Search extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         await axios.get(`api/search?screen_name=${this.state.searchQuery}`)
-            .then(response => this.setState({ searchResults: [...response.data] }))
-            .finally(this.setState({ hasData: true }))
+            .then(response => this.setState({ searchResults: response.data }))
+            .catch(function (error) {
+                alert("Screen name not found, please try another name.")
+                console.log(error)
+            })
         console.log(this.state.searchResults)
     }
 
@@ -47,7 +49,7 @@ class Search extends React.Component {
                 </form>
                 <hr></hr>
                 <body>
-                    {this.state.searchResults.data.map(tweet => {
+                    {this.state.searchResults.map(tweet => {
                         return (
                             <div className="card border-secondary w-50 mx-auto bg-light" key={tweet.id}>
                                 <div>
@@ -61,7 +63,7 @@ class Search extends React.Component {
                                     <h5 className="d-inline-block">{tweet.screen_name}</h5>
                                 </div>
                                 <div className="card-body">
-                                    <h1>{tweet.text}</h1>
+                                    <h3>{tweet.text}</h3>
                                     <span>{tweet.created_at} </span>
                                     <span>{tweet.favorite_count}</span>
                                 </div>
