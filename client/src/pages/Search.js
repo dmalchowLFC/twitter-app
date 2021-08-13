@@ -1,20 +1,19 @@
 import React from "react";
 import Nav from "../Nav"
-import MockData from './MockData';
 import axios from 'axios';
-
 
 class Search extends React.Component {
     constructor() {
         super()
         this.state = {
             searchQuery: '',
-            searchResults: ''
+            searchResults: [],
+            hasData: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.findTweets = this.findTweets.bind(this);
+
     }
 
     handleChange(event) {
@@ -24,15 +23,10 @@ class Search extends React.Component {
     }
     async handleSubmit(event) {
         event.preventDefault();
-
-    }
-
-    async findTweets(URL) {
-        const tweets = await axios.get(URL);
-        this.setState({
-            searchResults: tweets
-        })
-        console.log(searchResults)
+        await axios.get(`api/search?screen_name=${this.state.searchQuery}`)
+            .then(response => this.setState({ searchResults: [...response.data] }))
+            .finally(this.setState({ hasData: true }))
+        console.log(this.state.searchResults)
     }
 
     render() {
@@ -47,12 +41,33 @@ class Search extends React.Component {
                         placeholder="@"
                         name="searchBar"
                         class="form bg-light w-25"
+                        onChange={this.handleChange}
                     ></input>
                     <button type="submit" class="btn btn-primary text-light">Submit</button>
                 </form>
                 <hr></hr>
-                <body height='100vh'>
-                    <MockData />
+                <body>
+                    {this.state.searchResults.data.map(tweet => {
+                        return (
+                            <div className="card border-secondary w-50 mx-auto bg-light" key={tweet.id}>
+                                <div>
+                                    <img
+                                        className="thumbnail img-responsive rounded-circle"
+                                        alt="Cannot load"
+                                        src={tweet.user.profile_image_url}
+                                        height="50px"
+                                        width="50px" />
+                                    <h3 className="d-inline-block">{tweet.name} :</h3>
+                                    <h5 className="d-inline-block">{tweet.screen_name}</h5>
+                                </div>
+                                <div className="card-body">
+                                    <h1>{tweet.text}</h1>
+                                    <span>{tweet.created_at} </span>
+                                    <span>{tweet.favorite_count}</span>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </body>
             </div>
         )
