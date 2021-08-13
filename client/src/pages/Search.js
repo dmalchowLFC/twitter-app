@@ -40,7 +40,7 @@ class Search extends React.Component {
                     <label for="searchBar">Search for a twitter username:</label>
                     <input
                         type="text"
-                        placeholder="@"
+                        placeholder="username"
                         name="searchBar"
                         class="form bg-light w-25"
                         onChange={this.handleChange}
