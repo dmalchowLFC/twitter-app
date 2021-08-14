@@ -5,7 +5,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 const axios = require('axios');
 const bToken = process.env.bearer_token;
+const screenName = '';
 
+app.get('/search', (req, res) => {
+    console.log(res);
+});
 
 app.get('/api/search', async (req, res) => {
     const screen_name = req.query.screen_name;
@@ -19,7 +23,7 @@ app.get('/api/search', async (req, res) => {
                 res.send(response.data)
             }
             else {
-                alert("Screen name not found, please try another name.")
+                alert("Screen name not found, please try a different name.")
                 console.log(error)
             }
         })
@@ -52,12 +56,16 @@ app.get('/api/favorite3', (req, res) => {
         .then((response) => {
             res.send(response.data)
         })
+        .then((response) => console.log(response.data))
 });
 
 app.use('/', express.static(path.join(__dirname, 'client/build')))
 
+
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
+
+
 
 app.listen(port, () => console.log(`app.js is running on ${port}!`));

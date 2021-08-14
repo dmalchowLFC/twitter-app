@@ -1,6 +1,8 @@
 import React from "react";
 import Nav from "../Nav"
+import MockData from './MockData';
 import axios from 'axios';
+
 
 class Search extends React.Component {
     constructor() {
@@ -12,7 +14,7 @@ class Search extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
+        this.findTweets = this.findTweets.bind(this);
     }
 
     handleChange(event) {
@@ -43,7 +45,6 @@ class Search extends React.Component {
                         placeholder="username"
                         name="searchBar"
                         class="form bg-light w-25"
-                        onChange={this.handleChange}
                     ></input>
                     <button type="submit" class="btn btn-primary text-light">Submit</button>
                 </form>

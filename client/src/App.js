@@ -6,7 +6,8 @@ import Favorites from './pages/Favorites'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
 
 
