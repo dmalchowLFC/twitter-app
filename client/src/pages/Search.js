@@ -1,6 +1,5 @@
 import React from "react";
 import Nav from "../Nav"
-import MockData from './MockData';
 import axios from 'axios';
 
 
@@ -14,7 +13,6 @@ class Search extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.findTweets = this.findTweets.bind(this);
     }
 
     handleChange(event) {
