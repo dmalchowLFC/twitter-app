@@ -5,11 +5,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 const axios = require('axios');
 const bToken = process.env.bearer_token;
-const screenName = '';
 
-app.get('/search', (req, res) => {
-    console.log(res);
-});
+
+// app.get('/search', (req, res) => {
+//     console.log(res);
+// });
 
 app.get('/api/search', async (req, res) => {
     const screen_name = req.query.screen_name;
@@ -19,14 +19,12 @@ app.get('/api/search', async (req, res) => {
                 headers: { Authorization: `Bearer ${bToken}` },
             })
         .then((response) => {
-            if (response != error) {
-                res.send(response.data)
-            }
-            else {
-                alert("Screen name not found, please try a different name.")
-                console.log(error)
-            }
+            res.send(response.data)
         })
+        .catch((error) => {
+            console.log("Error", error.message);
+            res.status(404).send(error.message);
+        });
 });
 
 app.get('/api/favorite1', (req, res) => {
@@ -40,7 +38,7 @@ app.get('/api/favorite1', (req, res) => {
 });
 
 app.get('/api/favorite2', (req, res) => {
-    axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=wsl&count=1",
+    axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=wsl&count=1&expansions=attachments.media_keys&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text",
         {
             headers: { Authorization: `Bearer ${bToken}` },
         })
@@ -56,7 +54,7 @@ app.get('/api/favorite3', (req, res) => {
         .then((response) => {
             res.send(response.data)
         })
-        .then((response) => console.log(response.data))
+    // .then((response) => console.log(response.data))
 });
 
 app.use('/', express.static(path.join(__dirname, 'client/build')))

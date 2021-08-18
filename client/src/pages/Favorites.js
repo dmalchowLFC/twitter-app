@@ -14,13 +14,21 @@ class Favorites extends React.Component {
             favorite2: [],
             favorite3: []
         }
+        this.getTweets = this.getTweets.bind(this)
     }
     componentDidMount() {
+        this.getTweets()
+    };
+
+    getTweets() {
         axios.all([axiosRequest1, axiosRequest2, axiosRequest3])
-            .then(axios.spread(function (res1, res2, res3) {
-                res1 => this.setState({ favorite1: res1 })
-                res2 => this.setState({ favorite2: res2 })
-                res3 => this.setState({ favorite3: res3 })
+            .then(axios.spread((res1, res2, res3) => {
+                console.log(res1, res2, res3);
+                this.setState({
+                    favorite1: res1.data,
+                    favorite2: res2.data,
+                    favorite3: res3.data
+                });
             }));
     }
 
@@ -40,8 +48,8 @@ class Favorites extends React.Component {
                                         src={tweet1.user.profile_image_url}
                                         height="50px"
                                         width="50px" />
-                                    <h3 className="d-inline-block">{tweet1.name} :</h3>
-                                    <h5 className="d-inline-block">{tweet1.screen_name}</h5>
+                                    <h3 className="d-inline-block">{tweet1.user.name} :</h3>
+                                    <h5 className="d-inline-block ml-3">@ {tweet1.user.screen_name}</h5>
                                 </div>
                                 <div className="card-body">
                                     <h3>{tweet1.text}</h3>
@@ -61,8 +69,8 @@ class Favorites extends React.Component {
                                         src={tweet2.user.profile_image_url}
                                         height="50px"
                                         width="50px" />
-                                    <h3 className="d-inline-block">{tweet2.name} :</h3>
-                                    <h5 className="d-inline-block">{tweet2.screen_name}</h5>
+                                    <h3 className="d-inline-block">{tweet2.user.name} :</h3>
+                                    <h5 className="d-inline-block ml-3">@ {tweet2.user.screen_name}</h5>
                                 </div>
                                 <div className="card-body">
                                     <h3>{tweet2.text}</h3>
@@ -82,8 +90,8 @@ class Favorites extends React.Component {
                                         src={tweet3.user.profile_image_url}
                                         height="50px"
                                         width="50px" />
-                                    <h3 className="d-inline-block">{tweet3.name} :</h3>
-                                    <h5 className="d-inline-block">{tweet3.screen_name}</h5>
+                                    <h3 className="d-inline-block">{tweet3.user.name} :</h3>
+                                    <h5 className="d-inline-block ml-3">@ {tweet3.user.screen_name}</h5>
                                 </div>
                                 <div className="card-body">
                                     <h3>{tweet3.text}</h3>

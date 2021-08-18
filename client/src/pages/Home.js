@@ -6,19 +6,21 @@ function Home() {
         <div>
             <Nav />
             <h1>Home Page</h1>
+            <hr></hr>
             <body className="container-fluid">
                 <div className="row">
-                    <div className="col-lg-6 mw-50 mh-100">
+                    <div className="child1">
                         <text>Lorem Ipsum dolorem</text>
                     </div>
-                    <div className="col-lg-6 mw-50 mh-100">
+                    <div className="child2">
                         <img
-                            className="float-right"
+                            className="home-image"
+                            id="home-img"
                             alt="Cannot load"
-                            src="https://placeimg.com/300/500/tech"
+                            src="/images/home_image.png"
                             height="500px"
                             width="300px"
-                        ></img>
+                        />
                     </div>
                 </div>
             </body >

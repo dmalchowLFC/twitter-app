@@ -24,12 +24,14 @@ class Search extends React.Component {
         event.preventDefault();
         await axios.get(`api/search?screen_name=${this.state.searchQuery}`)
             .then(response => this.setState({ searchResults: response.data }))
-            .catch(function (error) {
+            .catch((error) => {
                 alert("Screen name not found, please try another name.")
                 console.log(error)
             })
         console.log(this.state.searchResults)
     }
+
+
 
     render() {
         return (
@@ -43,6 +45,7 @@ class Search extends React.Component {
                         placeholder="username"
                         name="searchBar"
                         class="form bg-light w-25"
+                        onChange={this.handleChange}
                     ></input>
                     <button type="submit" class="btn btn-primary text-light">Submit</button>
                 </form>
@@ -58,8 +61,8 @@ class Search extends React.Component {
                                         src={tweet.user.profile_image_url}
                                         height="50px"
                                         width="50px" />
-                                    <h3 className="d-inline-block">{tweet.name} :</h3>
-                                    <h5 className="d-inline-block">{tweet.screen_name}</h5>
+                                    <h3 className="d-inline-block">{tweet.user.name} :</h3>
+                                    <h6 className="d-inline-block ml-3">@{tweet.user.screen_name}</h6>
                                 </div>
                                 <div className="card-body">
                                     <h3>{tweet.text}</h3>

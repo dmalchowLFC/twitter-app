@@ -19,3 +19,38 @@ nav {
   align-items: center;
   list-style: none;
 }
+
+.row {
+  display: flex;
+
+}
+.child1 {
+  width: 50%;
+  text-align: center;
+  margin: auto;
+}
+.child2 {
+  width: 50%;
+  margin: auto;
+  height: 500px;
+  width: 350px;
+}
+
+.home-image {
+  display: block;
+  margin-left:auto;
+  border: 2px solid white;
+  margin-right: auto;
+  height: 70vh;
+  width: 50%;
+}
+#home-img {
+  background-image: url("images/home_image.png");
+}
+
+#navigation {
+  background-image: url("images/nav-bar_image2.jpg");
+  border-bottom: 2px solid black;
+}
+
+
