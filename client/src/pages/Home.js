@@ -1,5 +1,8 @@
 import React from "react";
 import Nav from "../Nav"
+import logo from "../images/home-image2.png";
+
+
 
 function Home() {
     return (
@@ -10,16 +13,16 @@ function Home() {
             <body className="container-fluid">
                 <div className="row">
                     <div className="child1">
-                        <text>Lorem Ipsum dolorem</text>
+                        <text>Welcome to my Twitter App! 
+                            
+                        </text>
                     </div>
                     <div className="child2">
                         <img
                             className="home-image"
                             id="home-img"
+                            src={logo}
                             alt="Cannot load"
-                            src="/images/home_image.png"
-                            height="500px"
-                            width="300px"
                         />
                     </div>
                 </div>

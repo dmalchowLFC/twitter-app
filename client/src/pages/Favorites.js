@@ -13,11 +13,13 @@ class Favorites extends React.Component {
             favorite1: [],
             favorite2: [],
             favorite3: []
-        }
-        this.getTweets = this.getTweets.bind(this)
+        };
+        this.getTweets = this.getTweets.bind(this);
+        this.parseDates = this.parseDates.bind(this);
     }
     componentDidMount() {
         this.getTweets()
+        this.parseDates()
     };
 
     getTweets() {
@@ -31,6 +33,15 @@ class Favorites extends React.Component {
                 });
             }));
     }
+
+    parseDates() {
+        const tweets = [this.state.favorite1.data.created_at, this.state.favorite2.data.created_at, this.state.favorite3.data.created_at];
+        for (let date of tweets) {
+            date
+        }
+
+    }
+
 
     render() {
         return (
