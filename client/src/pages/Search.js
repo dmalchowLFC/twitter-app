@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../Nav"
 import axios from 'axios';
+import heart from '../images/heart-icon.png';
 
 
 class Search extends React.Component {
@@ -67,7 +68,7 @@ class Search extends React.Component {
                                 <div className="card-body">
                                     <h3>{tweet.text}</h3>
                                     <span>{tweet.created_at} </span>
-                                    <span>{tweet.favorite_count}</span>
+                                    <img src={heart} id="heart" /><span>{tweet.favorite_count}</span>
                                 </div>
                             </div>
                         )

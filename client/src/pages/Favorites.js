@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../Nav";
 import axios from 'axios';
+import heart from '../images/heart-icon.png';
 
 const axiosRequest1 = axios.get("api/favorite1?screen_name=LFC&count=1")
 const axiosRequest2 = axios.get("api/favorite2?screen_name=wsl&count=1")
@@ -15,11 +16,11 @@ class Favorites extends React.Component {
             favorite3: []
         };
         this.getTweets = this.getTweets.bind(this);
-        this.parseDates = this.parseDates.bind(this);
+        this.formatDate = this.formatDate.bind(this);
+        this.displayMedia = this.displayMedia.bind(this);
     }
     componentDidMount() {
         this.getTweets()
-        this.parseDates()
     };
 
     getTweets() {
@@ -34,12 +35,27 @@ class Favorites extends React.Component {
             }));
     }
 
-    parseDates() {
-        const tweets = [this.state.favorite1.data.created_at, this.state.favorite2.data.created_at, this.state.favorite3.data.created_at];
-        for (let date of tweets) {
-            date
-        }
+    formatDate(date) {
+        const formattedDate = new Date(date);
+        const options = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        };
+        return formattedDate.toLocaleDateString("en-US", options);
 
+    }
+
+    displayMedia(tweet) {
+        if (tweet.extended_entities) {
+            tweet.extended_entities.media.map(stuff => {
+                console.log('Extended Entities obj', stuff.expanded_url)
+            })
+        } else if (!tweet.extended_entities && tweet.entities) {
+            tweet.entities.urls.map(stuff => {
+                console.log('Entities obj', stuff.expanded_url)
+            })
+        } else { }
     }
 
 
@@ -64,8 +80,9 @@ class Favorites extends React.Component {
                                 </div>
                                 <div className="card-body">
                                     <h3>{tweet1.text}</h3>
-                                    <span>{tweet1.created_at} </span>
-                                    <span>{tweet1.favorite_count}</span>
+                                    <section>{this.displayMedia(tweet1)}</section>
+                                    <span>{this.formatDate(tweet1.created_at)} </span>
+                                    <img src={heart} id='heart' /><span>{tweet1.favorite_count}</span>
                                 </div>
                             </div>
                         )
@@ -85,8 +102,9 @@ class Favorites extends React.Component {
                                 </div>
                                 <div className="card-body">
                                     <h3>{tweet2.text}</h3>
-                                    <span>{tweet2.created_at} </span>
-                                    <span>{tweet2.favorite_count}</span>
+                                    <section>{this.displayMedia(tweet2)}</section>
+                                    <span>{this.formatDate(tweet2.created_at)} </span>
+                                    <img src={heart} id='heart' /><span>{tweet2.favorite_count}</span>
                                 </div>
                             </div>
                         )
@@ -106,8 +124,9 @@ class Favorites extends React.Component {
                                 </div>
                                 <div className="card-body">
                                     <h3>{tweet3.text}</h3>
-                                    <span>{tweet3.created_at} </span>
-                                    <span>{tweet3.favorite_count}</span>
+                                    <section>{this.displayMedia(tweet3)}</section>
+                                    <span>{this.formatDate(tweet3.created_at)} </span>
+                                    <img src={heart} id='heart' /><span>{tweet3.favorite_count}</span>
                                 </div>
                             </div>
                         )
