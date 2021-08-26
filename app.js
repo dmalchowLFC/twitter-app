@@ -6,15 +6,10 @@ const port = process.env.PORT || 3000;
 const axios = require('axios');
 const bToken = process.env.bearer_token;
 
-
-// app.get('/search', (req, res) => {
-//     console.log(res);
-// });
-
 app.get('/api/search', async (req, res) => {
     const screen_name = req.query.screen_name;
     await axios
-        .get(`https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${screen_name}&count=5`,
+        .get(`https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=${screen_name}&count=10&tweet_mode=extended`,
             {
                 headers: { Authorization: `Bearer ${bToken}` },
             })
@@ -28,7 +23,7 @@ app.get('/api/search', async (req, res) => {
 });
 
 app.get('/api/favorite1', (req, res) => {
-    axios.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=LFC&count=1',
+    axios.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=LFC&count=3&tweet_mode=extended',
         {
             headers: { Authorization: `Bearer ${bToken}` },
         })
@@ -38,7 +33,7 @@ app.get('/api/favorite1', (req, res) => {
 });
 
 app.get('/api/favorite2', (req, res) => {
-    axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=wsl&count=1&expansions=attachments.media_keys&media.fields=duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text",
+    axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=wsl&count=3&tweet_mode=extended",
         {
             headers: { Authorization: `Bearer ${bToken}` },
         })
@@ -47,7 +42,7 @@ app.get('/api/favorite2', (req, res) => {
         })
 });
 app.get('/api/favorite3', (req, res) => {
-    axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=VancityReynolds&count=1",
+    axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=VancityReynolds&count=3&tweet_mode=extended",
         {
             headers: { Authorization: `Bearer ${bToken}` },
         })

@@ -2,10 +2,11 @@ import React from "react";
 import Nav from "../Nav";
 import axios from 'axios';
 import heart from '../images/heart-icon.png';
+import retweet from '../images/retweet.png';
 
-const axiosRequest1 = axios.get("api/favorite1?screen_name=LFC&count=1")
-const axiosRequest2 = axios.get("api/favorite2?screen_name=wsl&count=1")
-const axiosRequest3 = axios.get("api/favorite3?screen_name=VancityReynolds&count=1")
+const axiosRequest1 = axios.get("api/favorite1")
+const axiosRequest2 = axios.get("api/favorite2")
+const axiosRequest3 = axios.get("api/favorite3")
 
 class Favorites extends React.Component {
     constructor() {
@@ -79,10 +80,11 @@ class Favorites extends React.Component {
                                     <h5 className="d-inline-block ml-3">@ {tweet1.user.screen_name}</h5>
                                 </div>
                                 <div className="card-body">
-                                    <h3>{tweet1.text}</h3>
+                                    <h3>{tweet1.full_text}</h3>
                                     <section>{this.displayMedia(tweet1)}</section>
                                     <span>{this.formatDate(tweet1.created_at)} </span>
                                     <img src={heart} id='heart' /><span>{tweet1.favorite_count}</span>
+                                    <img src={retweet} id='retweet' /><span>{tweet1.retweet_count}</span>
                                 </div>
                             </div>
                         )
@@ -101,10 +103,11 @@ class Favorites extends React.Component {
                                     <h5 className="d-inline-block ml-3">@ {tweet2.user.screen_name}</h5>
                                 </div>
                                 <div className="card-body">
-                                    <h3>{tweet2.text}</h3>
+                                    <h3>{tweet2.full_text}</h3>
                                     <section>{this.displayMedia(tweet2)}</section>
                                     <span>{this.formatDate(tweet2.created_at)} </span>
                                     <img src={heart} id='heart' /><span>{tweet2.favorite_count}</span>
+                                    <img src={retweet} id='retweet' /><span>{tweet2.retweet_count}</span>
                                 </div>
                             </div>
                         )
@@ -123,10 +126,11 @@ class Favorites extends React.Component {
                                     <h5 className="d-inline-block ml-3">@ {tweet3.user.screen_name}</h5>
                                 </div>
                                 <div className="card-body">
-                                    <h3>{tweet3.text}</h3>
+                                    <h3>{tweet3.full_text}</h3>
                                     <section>{this.displayMedia(tweet3)}</section>
                                     <span>{this.formatDate(tweet3.created_at)} </span>
                                     <img src={heart} id='heart' /><span>{tweet3.favorite_count}</span>
+                                    <img src={retweet} id='retweet' /><span>{tweet3.retweet_count}</span>
                                 </div>
                             </div>
                         )
