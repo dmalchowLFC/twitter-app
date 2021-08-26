@@ -46,26 +46,32 @@ class Search extends React.Component {
     }
 
     displayMedia(tweet) {
+        let content;
         if (tweet.extended_entities) {
             tweet.extended_entities.media.map(stuff => {
                 switch (stuff.type) {
                     case 'photo':
                         console.log('Photo log', stuff.media_url_https)
-                        return (<img width="600" height="750" src={stuff.media_url_https} />)
+                        content = (<img width="400" height="500" src={stuff.media_url_https} />)
+                        break
                     case 'video':
-                        console.log('Video log', stuff.video_info.variants[0].url)
-                        console.log('Video Type:', stuff.video_info.variants[0].content_type)
-                        return (<video width="600" height="750" controls> <source src={stuff.video_info.variants[0].url} type={stuff.video_info.variants[0].content_type}></source></video >)
+                        content = this.findProperVideo(stuff.video_info.variants)
+                        break
                 }
             })
         } else if (!tweet.extended_entities && tweet.entities) {
             tweet.entities.urls.map(stuff => {
-                console.log('Entities obj', stuff.expanded_url)
-                // HAVE NOT BEGUN WORKING ON THIS PORTION YET 
+
             })
         } else { }
+        return content;
     }
 
+    findProperVideo(videoArray) {
+        const properVideo = videoArray.find(element => element.content_type === 'video/mp4');
+        console.log(properVideo);
+        return (<video width="400" height="500" controls> <source src={properVideo.url} type={properVideo.content_type}></source></video >)
+    }
 
     render() {
         return (
@@ -99,11 +105,15 @@ class Search extends React.Component {
                                     <h6 className="d-inline-block ml-3">@{tweet.user.screen_name}</h6>
                                 </div>
                                 <div className="card-body">
-                                    <h3>{tweet.full_text}</h3>
-                                    <div>{this.displayMedia(tweet)}</div>
-                                    <span>{this.formatDate(tweet.created_at)} </span>
-                                    <img src={heart} id="heart" /><span>{tweet.favorite_count}</span>
-                                    <img src={retweet} id='retweet' /><span>{tweet.retweet_count}</span>
+                                    <h4>{tweet.full_text}</h4>
+                                    <hr></hr>
+                                    <div className="d-flex justify-content-center">{this.displayMedia(tweet)}</div>
+                                    <hr></hr>
+                                    <div className="d-flex justify-content-between">
+                                        <span>{this.formatDate(tweet.created_at)} </span>
+                                        <div><img src={heart} id="heart" /><span>{tweet.favorite_count}</span></div>
+                                        <div><img src={retweet} id='retweet' /><span>{tweet.retweet_count}</span></div>
+                                    </div>
                                 </div>
                             </div>
                         )
