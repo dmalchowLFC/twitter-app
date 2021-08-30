@@ -30,10 +30,12 @@ class Search extends React.Component {
             .then(response => this.setState({ searchResults: response.data }))
             .catch((error) => {
                 alert("Screen name not found, please try another name.")
+                // location.reload()
                 console.log(error)
             })
         console.log(this.state.searchResults)
     }
+
     formatDate(date) {
         const formattedDate = new Date(date);
         const options = {
@@ -45,23 +47,103 @@ class Search extends React.Component {
 
     }
 
+    // displayMedia(tweet) {
+    //     let content;
+    //     if (tweet.extended_entities) {
+    //         tweet.extended_entities.media.map(stuff => {
+    //             switch (stuff.type) {
+    //                 case 'photo':
+    //                     content = (<img width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={stuff.media_url_https} />)
+    //                     break
+    //                 case 'video':
+    //                     content = (<video><source width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={this.findProperVideo(stuff.video_info.variants)} type='video/mp4'></source></video>)
+    //                     break
+    //             }
+    //         })
+    //     } else if (!tweet.extended_entities && tweet.entities) {
+    //         tweet.entities.urls.map(stuff => {
+    //             console.log(stuff.expanded_url);
+    //             content = <a href={stuff.expanded_url} target="_blank"><button>Click Here</button></a>;
+    //         })
+    //     } else { }
+    //     return content;
+    // }
     displayMedia(tweet) {
         let content;
-        if (tweet.extended_entities) {
+        if (tweet.extended_entities && tweet.extended_entities.media.length === 1) {
             tweet.extended_entities.media.map(stuff => {
                 switch (stuff.type) {
                     case 'photo':
-                        console.log('Photo log', stuff.media_url_https)
-                        content = (<img width="400" height="500" src={stuff.media_url_https} />)
+                        content = (<img width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={stuff.media_url_https} />)
                         break
                     case 'video':
-                        content = this.findProperVideo(stuff.video_info.variants)
+                        content = (<video><source width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={this.findProperVideo(stuff.video_info.variants)} type='video/mp4'></source></video>)
+                        break
+                }
+            })
+        } else if (tweet.extended_entities && tweet.extended_entities.media.length > 1) {
+            tweet.extended_entities.media.map(stuff => {
+                switch (stuff.type) {
+                    case 'photo':
+                        content =
+                            <div id="carouselBoxControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src={stuff[0].media_url_https} alt="First slide" />
+                                    </div>
+                                    {tweet.extended_entities.media.slice(1).map(stuff => {
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100" src={stuff.media_url_https} alt="Another slide" />
+                                        </div>
+                                    })}
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselBoxControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselBoxControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        break
+                    case 'video':
+                        content =
+                            <div id="carouselBoxControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <video><source
+                                            class="d-block w-100"
+                                            alt="First slide"
+                                            src={this.findProperVideo(stuff[0].video_info.variants)}
+                                            type='video/mp4'></source></video>
+                                    </div>
+                                    {tweet.extended_entities.media.slice(1).map(stuff => {
+                                        <div class="carousel-item">
+                                            <video><source
+                                                class="d-block w-100"
+                                                alt="First slide"
+                                                src={this.findProperVideo(stuff.video_info.variants)}
+                                                type='video/mp4'></source></video>
+                                        </div>
+                                    })}
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselBoxControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselBoxControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
                         break
                 }
             })
         } else if (!tweet.extended_entities && tweet.entities) {
             tweet.entities.urls.map(stuff => {
-
+                console.log(stuff.expanded_url);
+                content = <a href={stuff.expanded_url} target="_blank"><button>Click Here</button></a>;
             })
         } else { }
         return content;
@@ -69,8 +151,7 @@ class Search extends React.Component {
 
     findProperVideo(videoArray) {
         const properVideo = videoArray.find(element => element.content_type === 'video/mp4');
-        console.log(properVideo);
-        return (<video width="400" height="500" controls> <source src={properVideo.url} type={properVideo.content_type}></source></video >)
+        return (properVideo.url)
     }
 
     render() {
@@ -93,7 +174,7 @@ class Search extends React.Component {
                 <body>
                     {this.state.searchResults.map(tweet => {
                         return (
-                            <div className="card border-secondary w-50 mx-auto bg-light" key={tweet.id}>
+                            <div className="card border-secondary w-75 mx-auto bg-light" key={tweet.id}>
                                 <div>
                                     <img
                                         className="thumbnail img-responsive rounded-circle"

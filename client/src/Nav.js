@@ -1,11 +1,12 @@
-import React from 'react'
-import './App.css'
-import { Link } from "react-router-dom"
+import React from 'react';
+import './App.css';
+import { Link } from "react-router-dom";
+import logo from "./images/David-logo2.png";
 
 function Nav() {
     return (
         <nav className="navbar navbar-light text-dark navbar-expand-lg" id="navigation">
-            <h2 className="navbar-brand">Logo</h2>
+            <img className="navbar-brand" src={logo} />
             <button className="navbar-toggler" data-toggle="collapse" data-target="#theLinks">
                 <span className="navbar-toggler-icon"></span>
             </button>
