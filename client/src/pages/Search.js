@@ -30,8 +30,8 @@ class Search extends React.Component {
             .then(response => this.setState({ searchResults: response.data }))
             .catch((error) => {
                 alert("Screen name not found, please try another name.")
-                // location.reload()
                 console.log(error)
+                // location.reload()
             })
         console.log(this.state.searchResults)
     }
