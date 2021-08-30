@@ -31,7 +31,7 @@ class Search extends React.Component {
             .catch((error) => {
                 alert("Screen name not found, please try another name.")
                 console.log(error)
-                // location.reload()
+                location.reload()
             })
         console.log(this.state.searchResults)
     }
@@ -47,30 +47,9 @@ class Search extends React.Component {
 
     }
 
-    // displayMedia(tweet) {
-    //     let content;
-    //     if (tweet.extended_entities) {
-    //         tweet.extended_entities.media.map(stuff => {
-    //             switch (stuff.type) {
-    //                 case 'photo':
-    //                     content = (<img width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={stuff.media_url_https} />)
-    //                     break
-    //                 case 'video':
-    //                     content = (<video><source width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={this.findProperVideo(stuff.video_info.variants)} type='video/mp4'></source></video>)
-    //                     break
-    //             }
-    //         })
-    //     } else if (!tweet.extended_entities && tweet.entities) {
-    //         tweet.entities.urls.map(stuff => {
-    //             console.log(stuff.expanded_url);
-    //             content = <a href={stuff.expanded_url} target="_blank"><button>Click Here</button></a>;
-    //         })
-    //     } else { }
-    //     return content;
-    // }
     displayMedia(tweet) {
         let content;
-        if (tweet.extended_entities && tweet.extended_entities.media.length === 1) {
+        if (tweet.extended_entities) {
             tweet.extended_entities.media.map(stuff => {
                 switch (stuff.type) {
                     case 'photo':
@@ -78,65 +57,6 @@ class Search extends React.Component {
                         break
                     case 'video':
                         content = (<video><source width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={this.findProperVideo(stuff.video_info.variants)} type='video/mp4'></source></video>)
-                        break
-                }
-            })
-        } else if (tweet.extended_entities && tweet.extended_entities.media.length > 1) {
-            tweet.extended_entities.media.map(stuff => {
-                switch (stuff.type) {
-                    case 'photo':
-                        content =
-                            <div id="carouselBoxControls" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img class="d-block w-100" src={stuff[0].media_url_https} alt="First slide" />
-                                    </div>
-                                    {tweet.extended_entities.media.slice(1).map(stuff => {
-                                        <div class="carousel-item">
-                                            <img class="d-block w-100" src={stuff.media_url_https} alt="Another slide" />
-                                        </div>
-                                    })}
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselBoxControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselBoxControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        break
-                    case 'video':
-                        content =
-                            <div id="carouselBoxControls" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <video><source
-                                            class="d-block w-100"
-                                            alt="First slide"
-                                            src={this.findProperVideo(stuff[0].video_info.variants)}
-                                            type='video/mp4'></source></video>
-                                    </div>
-                                    {tweet.extended_entities.media.slice(1).map(stuff => {
-                                        <div class="carousel-item">
-                                            <video><source
-                                                class="d-block w-100"
-                                                alt="First slide"
-                                                src={this.findProperVideo(stuff.video_info.variants)}
-                                                type='video/mp4'></source></video>
-                                        </div>
-                                    })}
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselBoxControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselBoxControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
                         break
                 }
             })
@@ -148,6 +68,7 @@ class Search extends React.Component {
         } else { }
         return content;
     }
+
 
     findProperVideo(videoArray) {
         const properVideo = videoArray.find(element => element.content_type === 'video/mp4');
