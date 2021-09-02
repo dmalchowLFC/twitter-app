@@ -53,7 +53,7 @@ class Favorites extends React.Component {
             tweet.extended_entities.media.map(stuff => {
                 switch (stuff.type) {
                     case 'photo':
-                        content = (<img width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={stuff.media_url_https} />)
+                        content = (<img width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={stuff.media_url_https} alt="Cannot Load" />)
                         break
                     case 'video':
                         content = (<video><source width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={this.findProperVideo(stuff.video_info.variants)} type='video/mp4'></source></video>)
@@ -63,7 +63,7 @@ class Favorites extends React.Component {
         } else if (!tweet.extended_entities && tweet.entities) {
             tweet.entities.urls.map(stuff => {
                 console.log(stuff.expanded_url);
-                content = <a href={stuff.expanded_url} target="_blank"><button>Click Here</button></a>;
+                content = <a href={stuff.expanded_url} target="_blank" rel="noreferrer"><button>Click Here</button></a>;
             })
         } else { }
         return content;
@@ -101,8 +101,8 @@ class Favorites extends React.Component {
                                     <hr></hr>
                                     <div className="d-flex justify-content-between">
                                         <span>{this.formatDate(tweet1.created_at)} </span>
-                                        <div><img src={heart} id="heart" /><span>{tweet1.favorite_count}</span></div>
-                                        <div><img src={retweet} id='retweet' /><span>{tweet1.retweet_count}</span></div>
+                                        <div><img src={heart} id="heart" alt="Cannot load" /><span>{tweet1.favorite_count}</span></div>
+                                        <div><img src={retweet} id='retweet' alt="Cannot load" /><span>{tweet1.retweet_count}</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -128,8 +128,8 @@ class Favorites extends React.Component {
                                     <hr></hr>
                                     <div className="d-flex justify-content-between">
                                         <span>{this.formatDate(tweet2.created_at)} </span>
-                                        <div><img src={heart} id="heart" /><span>{tweet2.favorite_count}</span></div>
-                                        <div><img src={retweet} id='retweet' /><span>{tweet2.retweet_count}</span></div>
+                                        <div><img src={heart} id="heart" alt="Cannot load" /><span>{tweet2.favorite_count}</span></div>
+                                        <div><img src={retweet} id='retweet' alt="Cannot load" /><span>{tweet2.retweet_count}</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -155,8 +155,8 @@ class Favorites extends React.Component {
                                     <hr></hr>
                                     <div className="d-flex justify-content-between">
                                         <span>{this.formatDate(tweet3.created_at)} </span>
-                                        <div><img src={heart} id="heart" /><span>{tweet3.favorite_count}</span></div>
-                                        <div><img src={retweet} id='retweet' /><span>{tweet3.retweet_count}</span></div>
+                                        <div><img src={heart} id="heart" alt="Cannot load" /><span>{tweet3.favorite_count}</span></div>
+                                        <div><img src={retweet} id='retweet' alt="Cannot load" /><span>{tweet3.retweet_count}</span></div>
                                     </div>
                                 </div>
                             </div>

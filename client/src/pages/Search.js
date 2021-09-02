@@ -53,7 +53,7 @@ class Search extends React.Component {
             tweet.extended_entities.media.map(stuff => {
                 switch (stuff.type) {
                     case 'photo':
-                        content = (<img width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={stuff.media_url_https} />)
+                        content = (<img width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={stuff.media_url_https} alt="Cannot load" />)
                         break
                     case 'video':
                         content = (<video><source width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={this.findProperVideo(stuff.video_info.variants)} type='video/mp4'></source></video>)
@@ -63,7 +63,7 @@ class Search extends React.Component {
         } else if (!tweet.extended_entities && tweet.entities) {
             tweet.entities.urls.map(stuff => {
                 console.log(stuff.expanded_url);
-                content = <a href={stuff.expanded_url} target="_blank"><button>Click Here</button></a>;
+                content = <a href={stuff.expanded_url} target="_blank" rel="noreferrer"><button>Click Here</button></a>;
             })
         } else { }
         return content;
@@ -113,8 +113,8 @@ class Search extends React.Component {
                                     <hr></hr>
                                     <div className="d-flex justify-content-between">
                                         <span>{this.formatDate(tweet.created_at)} </span>
-                                        <div><img src={heart} id="heart" /><span>{tweet.favorite_count}</span></div>
-                                        <div><img src={retweet} id='retweet' /><span>{tweet.retweet_count}</span></div>
+                                        <div><img src={heart} id="heart" alt="Cannot load" /><span>{tweet.favorite_count}</span></div>
+                                        <div><img src={retweet} id='retweet' alt="Cannot load" /><span>{tweet.retweet_count}</span></div>
                                     </div>
                                 </div>
                             </div>
