@@ -58,6 +58,8 @@ class Search extends React.Component {
                     case 'video':
                         content = (<video><source width={stuff.sizes.small.w} height={stuff.sizes.small.h} src={this.findProperVideo(stuff.video_info.variants)} type='video/mp4'></source></video>)
                         break
+                    default:
+                        content = <text>Couldn't load media</text>
                 }
             })
         } else if (!tweet.extended_entities && tweet.entities) {
