@@ -6,7 +6,7 @@ import logo from "./images/David-logo2.png";
 function Nav() {
     return (
         <nav className="navbar navbar-light text-dark navbar-expand-lg" id="navigation">
-            <img className="navbar-brand" src={logo} />
+            <img className="navbar-brand" src={logo} alt="Cannot load" />
             <button className="navbar-toggler" data-toggle="collapse" data-target="#theLinks">
                 <span className="navbar-toggler-icon"></span>
             </button>

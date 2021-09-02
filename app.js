@@ -22,8 +22,8 @@ app.get('/api/search', async (req, res) => {
         });
 });
 
-app.get('/api/favorite1', (req, res) => {
-    axios.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=LFC&count=3&tweet_mode=extended',
+app.get('/api/favorite1', async (req, res) => {
+    await axios.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=LFC&count=3&tweet_mode=extended',
         {
             headers: { Authorization: `Bearer ${bToken}` },
         })
@@ -32,8 +32,8 @@ app.get('/api/favorite1', (req, res) => {
         })
 });
 
-app.get('/api/favorite2', (req, res) => {
-    axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=wsl&count=3&tweet_mode=extended",
+app.get('/api/favorite2', async (req, res) => {
+    await axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=wsl&count=3&tweet_mode=extended",
         {
             headers: { Authorization: `Bearer ${bToken}` },
         })
@@ -41,8 +41,8 @@ app.get('/api/favorite2', (req, res) => {
             res.send(response.data)
         })
 });
-app.get('/api/favorite3', (req, res) => {
-    axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=VancityReynolds&count=3&tweet_mode=extended",
+app.get('/api/favorite3', async (req, res) => {
+    await axios.get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=VancityReynolds&count=3&tweet_mode=extended",
         {
             headers: { Authorization: `Bearer ${bToken}` },
         })
