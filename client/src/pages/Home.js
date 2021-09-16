@@ -2,8 +2,6 @@ import React from "react";
 import Nav from "../Nav"
 import logo from "../images/home-image2.png";
 
-
-
 function Home() {
     return (
         <div>
